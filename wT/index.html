@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>TwLove</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to top right, #f8c8dc, #d1b3ff, #ffe5ec);
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .floating {
+      position: absolute;
+      width: 120px;
+      border-radius: 16px;
+      animation: floatUp 14s ease-in-out infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff69b4);
+      clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+      animation: floatUp 16s ease-in-out infinite;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 3s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    #message-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: white;
+      text-shadow: 0 0 10px #ffb6c1;
+      font-family: 'Segoe UI', sans-serif;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ảnh bay lên -->
+  <img src="z7133002991929_1391eaaac4ca3887069412d8f6e86ded.jpg" class="floating" style="left: 5%; animation-delay: 0s;">
+  <img src="z7133003470633_3da2441dafcefdc58eef327ecddb56c4.jpg" class="floating" style="left: 15%; animation-delay: 2s;">
+  <img src="z7133003825326_8bea10ae7a47488e465aa682477da0af.jpg" class="floating" style="left: 25%; animation-delay: 4s;">
+  <img src="z7133004210345_d46748bb53c7789fe00edaef92f76a4c.jpg" class="floating" style="left: 35%; animation-delay: 6s;">
+  <img src="z7133678037836_c378fe042007cdf7e713cf4d9479fb08.jpg" class="floating" style="left: 45%; animation-delay: 8s;">
+  <img src="z7133678046566_6b70b97a176e85b706f119a6a8e71c50.jpg" class="floating" style="left: 55%; animation-delay: 10s;">
+  <img src="z7133678050206_61323405aea5987fae10df26813a7971.jpg" class="floating" style="left: 65%; animation-delay: 12s;">
+  <img src="z7133678050450_b704c7418f0a85de7158c5d2cb7f78a2.jpg" class="floating" style="left: 75%; animation-delay: 14s;">
+  <img src="z7133678057194_dbcc57d9d70eb79db95e24c13e6c3d23.jpg" class="floating" style="left: 75%; animation-delay: 14s;">
+
+  <!-- Trái tim pastel -->
+  <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
+  <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
+  <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
+  <div class="heart" style="left: 70%; animation-delay: 7s;"></div>
+  <div class="heart" style="left: 90%; animation-delay: 9s;"></div>
+
+  <!-- Sao lấp lánh -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'sparkle';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(star);
+    }
+  </script>
+
+  <!-- Dòng chữ lần lượt hiện ra -->
+  <div id="message-box"></div>
+  <script>
+    const messages = [
+      "Chúng ta là những vì sao nhỏ trong vũ trụ pastel này ✨",
+      "Từng khoảnh khắc bên nhau đều là kẹo ngọt 💖",
+      "Ta là 2 cá thể khác nhau 🌸",
+      "Yêu thương không cần lý do, chỉ cần có nhau 💫",
+      "Cảm ơn vì đã là một phần trong vũ trụ của anh 🌈",
+      "Dù thế giới có lạ kỳ, tình mình vẫn dịu dàng như mây ☁️",
+      "Mỗi ánh nhìn là một vệt sáng trong tim anh ✨",
+      "Chúng ta không hoàn hảo, nhưng vừa vặn với nhau 💞",
+      "Tình yêu này không cần định nghĩa, chỉ cần cảm nhận 💗",
+      "Giữa muôn ngàn ánh sáng, anh chỉ yêu một người.. 🌟",
+      "Chúc em bé của anh 20/10 vui vẻ ❤️"
+    ]; 
+
+    let msgIndex = 0;
+    let charIndex = 0;
+    const box = document.getElementById("message-box");
+
+    function typeMessage() {
+      if (msgIndex < messages.length) {
+        if (charIndex < messages[msgIndex].length) {
+          box.textContent += messages[msgIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(typeMessage, 80);
+        } else {
+          setTimeout(() => {
+            box.textContent = "";
+            charIndex = 0;
+            msgIndex++;
+            typeMessage();
+          }, 2500);
+        }
+      }
+    }
+
+    window.onload = typeMessage;
+  </script>
+
+  <!-- Nhạc nền YouTube ẩn -->
+  <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;">
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/knQQDhW_Hr0?autoplay=1&loop=1&playlist=knQQDhW_Hr0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
+</body>
+</html>
